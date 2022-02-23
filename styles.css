@@ -189,26 +189,43 @@ hr {
 }
 
 .cards {
-    background-color: rgb(217, 248, 243);
-    padding: 15px 100px 100px 150px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgb(234, 242, 242);
+    padding: 30px 100px 100px 350px;
 }
 
 .cards img {
-    width: 60px;
+    width: 55px;
 }
 
 .card {
     display: flex;
+    align-items: flex-start;
     position: relative;
     background-color: #ffffff;
     border-radius: 8px;
-    padding: 15px;
+    padding: 35px;
+    margin: 25px;
+    max-width: 370px;
 }
 
 .text {
-    padding: 0 15px;
+    padding: 0 30px;
+}
+
+.text p {
+    padding-top: 15px;
+    font-size: 18px;
+    font-weight: 300;
+    font-family: -applesystem, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .text h2 {
-    font-size: 30px;
+    font-size: 28px;
+    font-weight: bold;
+    font-family: -applesystem, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+
 }
