@@ -90,6 +90,16 @@
     justify-content: space-around;
 }
 
+@media only screen and (max-width: 900px) {
+    .tabs {
+        display: none;
+    }
+    .header {
+        display: flex;
+        position: absolute;
+    }
+}
+
 
 /* The switch - the box around the slider */
 
@@ -193,12 +203,31 @@ input:checked+.slider:before {
     flex-direction: column;
     align-items: center;
     background-color: rgb(234, 242, 242);
+    width: 100%;
 }
 
-.cards {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 30px 100px 40px 350px;
+@media (min-width: 1000px) {
+    .cards {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 30px 100px 40px 350px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .cards {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 30px 100px 40px 350px;
+    }
+}
+
+@media (max-width: 800px) {
+    .cards {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 30px 100px 40px 100px;
+    }
 }
 
 .cards img {
@@ -213,8 +242,7 @@ input:checked+.slider:before {
     border-radius: 8px;
     padding: 35px;
     margin: 25px;
-    max-width: 370px;
-    min-height: 100px;
+    max-width: 350px;
 }
 
 .card:hover {
@@ -271,6 +299,10 @@ input:checked+.slider:before {
     font-weight: 300;
     font-family: -applesystem, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: rgb(50, 109, 177)
+}
+
+.footer {
+    width: 100%;
 }
 
 .navigation {
