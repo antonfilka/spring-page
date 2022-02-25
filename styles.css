@@ -408,7 +408,7 @@
     @media only screen and (max-width: 900px) {
         .intro {
             margin-top: 50px;
-            padding: 10px 100px 100px 150px;
+            padding: 10px 20px 100px 20px;
         }
         .tabs {
             display: none;
@@ -433,7 +433,10 @@
             border-bottom: #000000;
         }
         .separator {
-            display: none;
+            display: contents;
+            top: 50px;
+            left: 0px;
+            margin-top: 50px;
         }
         .intro {
             margin-top: 100px;
@@ -480,6 +483,9 @@
     }
     
     @media only screen and (max-width: 800px) {
+        .intro {
+            padding-left: 30px;
+        }
         .intro h1 {
             font: 50px 'Open Sans', sans-serif;
             font-weight: bold;
