@@ -1,6 +1,10 @@
 const cards = document.getElementById('cards');
 const searchbar = document.getElementById('searchbar');
 const nocards = document.getElementById('nocards');
+const whySpringTab = document.getElementById('whySpringTab');
+const learnTab = document.getElementById('learnTab');
+const projectsTab = document.getElementById('projectsTab');
+const communityTab = document.getElementById('communityTab');
 
 const cardsArr = [{
         img: 'https://spring.io/images/projects/spring-boot-7f2e24fb962501672cc91ccd285ed2ba.svg',
@@ -74,6 +78,40 @@ const cardsArr = [{
     }
 ];
 
+const whySpringTabContent = [
+    { title: 'Overview', link: '' },
+    { title: 'Microservices', link: '' },
+    { title: 'Reactive', link: '' },
+    { title: 'Event Driven', link: '' },
+    { title: 'Cloud', link: '' },
+    { title: 'Web Applications', link: '' },
+    { title: 'Serverless', link: '' },
+    { title: 'Batch', link: '' }
+];
+const learnTabContent = [
+    { title: 'Overview', link: '' },
+    { title: 'Quickstart', link: '' },
+    { title: 'Guides', link: '' },
+    { title: 'Blog', link: '' },
+];
+const projectsTabContent = [
+    { title: 'Overview', link: '' },
+    { title: 'Spring Boot', link: '' },
+    { title: 'Spring Framework', link: '' },
+    { title: 'Spring Cloud', link: '' },
+    { title: 'Spring Cloud Data Flow', link: '' },
+    { title: 'Spring Data', link: '' },
+    { title: 'Spring Integration', link: '' },
+    { title: 'Spring Batch', link: '' },
+    { title: 'Spring Security', link: '' },
+    { title: 'View all projects', link: '' },
+];
+const communityTabContent = [
+    { title: 'Overview', link: '' },
+    { title: 'Events', link: '' },
+    { title: 'Team', link: '' },
+];
+
 searchbar.addEventListener('keyup', (e) => {
     const searcString = e.target.value.toLowerCase();
 
@@ -104,4 +142,28 @@ const displayCards = (cardList) => {
     cards.innerHTML = htmlString;
 }
 
+const displayTabs = (whySpringTabContent, learnTabContent, projectsTabContent, communityTabContent) => {
+    whySpringTab.innerHTML = whySpringTabContent.map((tab) => {
+        return (
+            ` <a href="#">${tab.title}</a> `
+        )
+    }).join('')
+    learnTab.innerHTML = learnTabContent.map((tab) => {
+        return (
+            ` <a href="#">${tab.title}</a> `
+        )
+    }).join('')
+    projectsTab.innerHTML = projectsTabContent.map((tab) => {
+        return (
+            ` <a href="#">${tab.title}</a> `
+        )
+    }).join('')
+    communityTab.innerHTML = communityTabContent.map((tab) => {
+        return (
+            ` <a href="#">${tab.title}</a> `
+        )
+    }).join('')
+}
+
 displayCards(cardsArr);
+displayTabs(whySpringTabContent, learnTabContent, projectsTabContent, communityTabContent);
