@@ -151,8 +151,14 @@ searchbar.addEventListener('keyup', (e) => {
         )
     });
 
-    displayCards(filteredCards);
-    filteredCards.length < 1 ? nocards.innerHTML = ` <h2>No results</h2>` : nocards.innerHTML = ` </>`
+    setTimeout(
+        () => {
+            displayCards(filteredCards);
+            filteredCards.length < 1 ? nocards.innerHTML = ` <h2>No results</h2>` : nocards.innerHTML = ` </>`
+        },
+        300
+    );
+
 })
 
 const displayCards = (cardList) => {
