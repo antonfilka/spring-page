@@ -29,11 +29,20 @@
         flex-basis: 20%;
     }
     
-    .tabs {
+    .tabsWrapper {
         display: flex;
         cursor: pointer;
         flex-basis: 80%;
-        justify-content: space-around;
+        justify-content: flex-end;
+    }
+    
+    .tabs {
+        display: flex;
+    }
+    
+    .tabs a {
+        color: #000000;
+        text-decoration: none;
     }
     
     .header img {
@@ -70,7 +79,7 @@
         display: none;
         position: absolute;
         background-color: #ffffff;
-        min-width: 160px;
+        min-width: 170px;
         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
         z-index: 1;
         border-radius: 8px;
@@ -436,7 +445,7 @@
         .icon {
             flex-basis: 16%;
         }
-        .tabs {
+        .tabsWrapper {
             flex-basis: 84%;
             justify-self: flex-end;
         }
@@ -450,7 +459,7 @@
             margin-top: 50px;
             padding: 10px 20px 100px 20px;
         }
-        .tabs {
+        .tabsWrapper {
             display: none;
         }
         .head-wrapper {

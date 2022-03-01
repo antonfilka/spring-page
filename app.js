@@ -1,10 +1,11 @@
 const cards = document.getElementById('cards');
 const searchbar = document.getElementById('searchbar');
 const nocards = document.getElementById('nocards');
-const whySpringTab = document.getElementById('whySpringTab');
-const learnTab = document.getElementById('learnTab');
-const projectsTab = document.getElementById('projectsTab');
-const communityTab = document.getElementById('communityTab');
+const tabs = document.getElementById('tabs');
+
+const dropdownIconLink = "components/icon-dropdown.png"
+const springLinkBase = "https://spring.io/"
+
 
 const cardsArr = [{
         img: 'https://spring.io/images/projects/spring-boot-7f2e24fb962501672cc91ccd285ed2ba.svg',
@@ -78,39 +79,67 @@ const cardsArr = [{
     }
 ];
 
-const whySpringTabContent = [
-    { title: 'Overview', link: '' },
-    { title: 'Microservices', link: '' },
-    { title: 'Reactive', link: '' },
-    { title: 'Event Driven', link: '' },
-    { title: 'Cloud', link: '' },
-    { title: 'Web Applications', link: '' },
-    { title: 'Serverless', link: '' },
-    { title: 'Batch', link: '' }
-];
-const learnTabContent = [
-    { title: 'Overview', link: '' },
-    { title: 'Quickstart', link: '' },
-    { title: 'Guides', link: '' },
-    { title: 'Blog', link: '' },
-];
-const projectsTabContent = [
-    { title: 'Overview', link: '' },
-    { title: 'Spring Boot', link: '' },
-    { title: 'Spring Framework', link: '' },
-    { title: 'Spring Cloud', link: '' },
-    { title: 'Spring Cloud Data Flow', link: '' },
-    { title: 'Spring Data', link: '' },
-    { title: 'Spring Integration', link: '' },
-    { title: 'Spring Batch', link: '' },
-    { title: 'Spring Security', link: '' },
-    { title: 'View all projects', link: '' },
-];
-const communityTabContent = [
-    { title: 'Overview', link: '' },
-    { title: 'Events', link: '' },
-    { title: 'Team', link: '' },
-];
+const tabsArr = [{
+        tabTitle: 'Why spring',
+        isDropdown: true,
+        tabItems: [
+            { itemTitle: 'Overview', link: springLinkBase + 'why-spring' },
+            { itemTitle: 'Microservices', link: springLinkBase + 'microservices' },
+            { itemTitle: 'Reactive', link: springLinkBase + 'reactive' },
+            { itemTitle: 'Event Driven', link: springLinkBase + 'event-driven' },
+            { itemTitle: 'Cloud', link: springLinkBase + 'cloud' },
+            { itemTitle: 'Web Applications', link: springLinkBase + 'web-applications' },
+            { itemTitle: 'Serverless', link: springLinkBase + '' },
+            { itemTitle: 'Batch', link: springLinkBase + '' }
+        ]
+    },
+    {
+        tabTitle: 'Learn',
+        isDropdown: true,
+        tabItems: [
+            { itemTitle: 'Overview', link: springLinkBase + 'learn' },
+            { itemTitle: 'Quickstart', link: springLinkBase + 'quickstart' },
+            { itemTitle: 'Guides', link: springLinkBase + 'guides' },
+            { itemTitle: 'Blog', link: springLinkBase + 'blog' },
+        ]
+    },
+    {
+        tabTitle: 'Projects',
+        isDropdown: true,
+        tabItems: [
+            { itemTitle: 'Overview', link: springLinkBase + 'projects' },
+            { itemTitle: 'Spring Boot', link: springLinkBase + 'projects/spring-boot' },
+            { itemTitle: 'Spring Framework', link: springLinkBase + 'projects/spring-framework' },
+            { itemTitle: 'Spring Cloud', link: springLinkBase + 'projects/spring-cloud' },
+            { itemTitle: 'Spring Cloud Data Flow', link: springLinkBase + 'projects/spring-cloud-dataflow' },
+            { itemTitle: 'Spring Data', link: springLinkBase + 'projects/spring-data' },
+            { itemTitle: 'Spring Integration', link: springLinkBase + 'projects/spring-integration' },
+            { itemTitle: 'Spring Batch', link: springLinkBase + 'projects/spring-batch' },
+            { itemTitle: 'Spring Security', link: springLinkBase + 'projects/spring-security' },
+            { itemTitle: 'View all projects', link: springLinkBase + 'projects' },
+        ]
+    },
+    {
+        tabTitle: 'Training',
+        isDropdown: false,
+        link: springLinkBase + 'training'
+    },
+    {
+        tabTitle: 'Support',
+        isDropdown: false,
+        link: springLinkBase + 'support'
+    },
+    {
+        tabTitle: 'Community',
+        isDropdown: true,
+        tabItems: [
+            { itemTitle: 'Overview', link: springLinkBase + 'community' },
+            { itemTitle: 'Events', link: springLinkBase + 'events' },
+            { itemTitle: 'Team', link: springLinkBase + 'team' },
+        ]
+    },
+
+]
 
 searchbar.addEventListener('keyup', (e) => {
     const searcString = e.target.value.toLowerCase();
@@ -142,28 +171,26 @@ const displayCards = (cardList) => {
     cards.innerHTML = htmlString;
 }
 
-const displayTabs = (whySpringTabContent, learnTabContent, projectsTabContent, communityTabContent) => {
-    whySpringTab.innerHTML = whySpringTabContent.map((tab) => {
-        return (
-            ` <a href="#">${tab.title}</a> `
-        )
-    }).join('')
-    learnTab.innerHTML = learnTabContent.map((tab) => {
-        return (
-            ` <a href="#">${tab.title}</a> `
-        )
-    }).join('')
-    projectsTab.innerHTML = projectsTabContent.map((tab) => {
-        return (
-            ` <a href="#">${tab.title}</a> `
-        )
-    }).join('')
-    communityTab.innerHTML = communityTabContent.map((tab) => {
-        return (
-            ` <a href="#">${tab.title}</a> `
-        )
-    }).join('')
+const displayTabs = (tabsArr) => {
+        tabs.innerHTML = tabsArr.map((tab) => {
+                    if (tab.isDropdown) {
+                        return (
+                                `
+                    <div class="dropdown">
+                    <button class="dropbtn"><h4>${tab.tabTitle}</h4></button>
+                    <img src="${dropdownIconLink}" alt="img">
+                    <div class="dropdown-content">
+                    ${tab.tabItems.map((tabItem) => {
+                        return (` <a href="${tabItem.link}">${tabItem.itemTitle}</a> `)
+                    }).join('')}
+                    </div>
+                    </div>
+                    `
+                )} else {
+                        return (`<a href="${tab.link}"><h4>${tab.tabTitle}</h4></a>`)
+                    }
+    }).join('');
 }
 
 displayCards(cardsArr);
-displayTabs(whySpringTabContent, learnTabContent, projectsTabContent, communityTabContent);
+displayTabs(tabsArr);
