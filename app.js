@@ -2,6 +2,7 @@ const cards = document.getElementById('cards');
 const searchbar = document.getElementById('searchbar');
 const nocards = document.getElementById('nocards');
 const tabs = document.getElementById('tabs');
+const overlayContent = document.getElementById('overlayContent');
 
 const dropdownIconLink = "components/icon-dropdown.png"
 const springLinkBase = "https://spring.io/"
@@ -80,7 +81,7 @@ const cardsArr = [{
 ];
 
 const tabsArr = [{
-        tabTitle: 'Why spring',
+        tabTitle: 'Why Spring',
         isDropdown: true,
         tabItems: [
             { itemTitle: 'Overview', link: springLinkBase + 'why-spring' },
@@ -141,6 +142,18 @@ const tabsArr = [{
 
 ]
 
+
+/* Open */
+function openNav() {
+    document.getElementById("myNav").style.height = "100%";
+}
+
+/* Close */
+function closeNav() {
+    document.getElementById("myNav").style.height = "0%";
+}
+
+
 searchbar.addEventListener('keyup', (e) => {
     const searcString = e.target.value.toLowerCase();
 
@@ -160,6 +173,31 @@ searchbar.addEventListener('keyup', (e) => {
     );
 
 })
+
+const displayOverlayContent = (tabsArr) => {
+    overlayContent.innerHTML = tabsArr.map((tab) => {
+        if (tab.isDropdown) {
+            return (
+                `
+                <div class="isDropdown">
+                <a href="#">${tab.tabTitle}</a>
+                <img src="${dropdownIconLink}" alt="img">
+                </div>
+                <hr>
+                `
+            )
+        } else {
+            return (
+                `
+                <div>
+                <a href="#">${tab.tabTitle}</a>
+                <hr>
+                </div>
+                `
+            )
+        }
+    }).join('');
+}
 
 const displayCards = (cardList) => {
 
@@ -200,3 +238,4 @@ const displayTabs = (tabsArr) => {
 
 displayCards(cardsArr);
 displayTabs(tabsArr);
+displayOverlayContent(tabsArr);
