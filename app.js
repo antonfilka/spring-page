@@ -16,68 +16,78 @@ const cardsArr = [{
     {
         img: 'https://spring.io/images/projects/spring-framework-640ad1b04f7efa89e0f0f7353e6b5e02.svg?v=2',
         title: 'Spring Framework',
-        text: 'Takes an opinionated view of building Spring applications and gets you up and running as quickly as possible.'
+        text: 'Provides core support for dependency injection, transaction management, web apps, data access, messaging, and more.'
     },
     {
         img: 'https://spring.io/images/projects/spring-data-79cc203ed8c54191215a60f9e5dc638f.svg',
         title: 'Spring Data',
-        text: 'Takes an opinionated view of building Spring applications and gets you up and running as quickly as possible.'
+        text: 'Provides a consistent approach to data access – relational, non-relational, map-reduce, and beyond.'
     },
     {
         img: 'https://spring.io/images/projects/spring-cloud-81fe04ab129ab99da0e7c7115bb09920.svg',
         title: 'Spring Cloud',
-        text: 'Takes an opinionated view of building Spring applications and gets you up and running as quickly as possible.'
+        text: 'Provides a set of tools for common patterns in distributed systems. Useful for building and deploying microservices.'
     },
     {
         img: 'https://spring.io/images/projects/spring-data-flow-9eb1733b76b6cd62cbdd9bc9a2b04e56.svg',
         title: 'Spring Cloud Data Flow',
-        text: 'Takes an opinionated view of building Spring applications and gets you up and running as quickly as possible.'
+        text: 'Provides an orchestration service for composable data microservice applications on modern runtimes.'
     },
     {
         img: 'https://spring.io/images/projects/spring-security-b712a4cdb778e72eb28b8c55ec39dbd1.svg',
         title: 'Spring Security',
-        text: 'Takes an opinionated view of building Spring applications and gets you up and running as quickly as possible.'
+        text: 'Protects your application with comprehensive and extensible authentication and authorization support.'
     },
     {
         img: 'https://spring.io/images/projects/spring-graphql-2ba54760cd0651ad26e7425a0f65385d.svg',
         title: 'Spring for GraphQL',
-        text: 'Takes an opinionated view of building Spring applications and gets you up and running as quickly as possible.'
+        text: 'Spring for GraphQL provides support for Spring applications built on GraphQL Java.'
     },
     {
         img: 'https://spring.io/images/projects/logo-session-5b3068613a1bee9a50a69f12c6d255f5.png',
         title: 'Spring Session',
-        text: 'Takes an opinionated view of building Spring applications and gets you up and running as quickly as possible.'
+        text: 'Provides an API and implementations for managing a user’s session information.'
     },
     {
         img: 'https://spring.io/images/projects/spring-integration-ed45c92142d821851bf6c771f4c556bb.svg?v=2',
         title: 'Spring Integration',
-        text: 'Takes an opinionated view of building Spring applications and gets you up and running as quickly as possible.'
+        text: 'Supports the well-known Enterprise Integration Patterns through lightweight messaging and declarative adapters.'
     },
     {
         img: 'https://spring.io/images/projects/spring-hateoas-7da375e1fbd0213275eaa7009926e1cb.svg?v=2',
         title: 'Spring HATEOAS',
-        text: 'Takes an opinionated view of building Spring applications and gets you up and running as quickly as possible.'
+        text: 'Simplifies creating REST representations that follow the HATEOAS principle.'
     },
     {
         img: 'https://spring.io/images/projects/spring-restdocs-7ba253b6470bc54f9dba54e12eef549b.png',
         title: 'Spring REST Docs',
-        text: 'Takes an opinionated view of building Spring applications and gets you up and running as quickly as possible.'
+        text: 'Lets you document RESTful services by combining hand-written documentation with auto-generated snippets produced with Spring MVC Test or REST Assured.'
     },
     {
         img: 'https://spring.io/images/projects/spring-batch-4ed8fe7187bf70afd9c8efa229a4f77c.svg',
         title: 'Spring Batch',
-        text: 'Takes an opinionated view of building Spring applications and gets you up and running as quickly as possible.'
+        text: 'Simplifies and optimizes the work of processing high-volume batch operations.'
     },
     {
         img: 'https://spring.io/images/projects/spring-amqp-6d6aaf6b4861d1cb458e53fb029b4046.svg?v=2',
         title: 'Spring AMQP',
-        text: 'Takes an opinionated view of building Spring applications and gets you up and running as quickly as possible.'
+        text: 'Applies core Spring concepts to the development of AMQP - based messaging solutions.'
     },
     {
         img: 'https://spring.io/images/projects/spring-edf462fec682b9d48cf628eaf9e19521.svg',
         title: 'Spring CredHub',
-        text: 'Takes an opinionated view of building Spring applications and gets you up and running as quickly as possible.'
-    }
+        text: 'Provides client-side support for storing, retrieving, and deleting credentials from a CredHub server running in a Cloud Foundry platform.'
+    },
+    {
+        img: 'https://spring.io/images/projects/spring-flo-9b976862b11e6dd682bcc4ae9f0eca1b.svg?v=2',
+        title: 'Spring Flo',
+        text: 'Provides a JavaScript library that offers a basic embeddable HTML5 visual builder for pipelines and simple graphs.'
+    },
+    {
+        img: 'https://spring.io/images/projects/spring-kafka-1f159a30a8723794dfa7260ffbdae5b0.svg?v=2',
+        title: 'Spring for Apache Kafka',
+        text: 'Provides Familiar Spring Abstractions for Apache Kafka.'
+    },
 ];
 
 const tabsArr = [{
@@ -143,16 +153,17 @@ const tabsArr = [{
 ]
 
 
-/* Open */
 function openNav() {
     document.getElementById("myNav").style.height = "100%";
 }
 
-/* Close */
 function closeNav() {
     document.getElementById("myNav").style.height = "0%";
 }
 
+function dropContent(id) {
+    document.getElementById(`drop${id}`).style.getPropertyValue("display") == "block" ? document.getElementById(`drop${id}`).style.display = "none" : document.getElementById(`drop${id}`).style.display = "block"
+}
 
 searchbar.addEventListener('keyup', (e) => {
     const searcString = e.target.value.toLowerCase();
@@ -175,15 +186,22 @@ searchbar.addEventListener('keyup', (e) => {
 })
 
 const displayOverlayContent = (tabsArr) => {
-    overlayContent.innerHTML = tabsArr.map((tab) => {
-        if (tab.isDropdown) {
-            return (
-                `
+        overlayContent.innerHTML = tabsArr.map((tab, index) => {
+                    if (tab.isDropdown) {
+                        return (
+                                `
                 <div class="isDropdown">
-                <a href="#">${tab.tabTitle}</a>
-                <img src="${dropdownIconLink}" alt="img">
+                <a href="${tab.link}">${tab.tabTitle}</a>
+                <img src="${dropdownIconLink}" alt="img" onclick="dropContent(${index})">
                 </div>
                 <hr>
+                <div class="dropContent" id="drop${index}">
+                ${
+                    tab.tabItems.map( (item) => {
+                    return(`<a href="#${item.link}">${item.itemTitle}</a>`)
+                }).join("")
+                }   
+                </div>
                 `
             )
         } else {
