@@ -12,6 +12,94 @@
         padding: 0;
     }
     
+    .overlay {
+        top: 0;
+        height: 0;
+        width: 100%;
+        position: fixed;
+        z-index: 2;
+        left: 0;
+        top: 0;
+        background-color: rgb(25, 30, 30);
+        overflow-x: hidden;
+        transition: 0.5s;
+    }
+    
+    .overlay-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        position: relative;
+        top: 15%;
+        padding-left: 30px;
+        width: 100%;
+    }
+    
+    .overlay-content hr {
+        width: 85%;
+        opacity: 40%;
+    }
+    
+    .overlay a {
+        padding: 8px;
+        text-decoration: none;
+        font-size: 36px;
+        color: #ffffff;
+        display: block;
+        font-size: 30px;
+        font-family: 'Open Sans', sans-serif;
+        transition: 0.3s;
+    }
+    
+    .overlay a:hover,
+    .overlay a:focus {
+        color: #f1f1f1;
+    }
+    
+    .isDropdown {
+        display: flex;
+        justify-content: space-between;
+        margin-right: 17%;
+    }
+    
+    .isDropdown img {
+        margin-top: 20px;
+        justify-self: flex-end;
+        filter: invert(1);
+        width: 20px;
+        height: 20px;
+    }
+    
+    .dropContent {
+        display: none;
+    }
+    
+    .dropContent a {
+        transition: 0.3s;
+        color: #8a9b95;
+        font-size: 20px;
+        font-family: 'Open Sans', sans-serif;
+    }
+    
+    .overlay .closebtn {
+        color: #ffffff;
+        position: absolute;
+        right: 15px;
+        font-weight: lighter;
+        font-size: 40px;
+    }
+    
+    @media screen and (max-height: 450px) {
+        .overlay a {
+            font-size: 20px
+        }
+        .overlay .closebtn {
+            font-size: 40px;
+            top: 15px;
+            right: 35px;
+        }
+    }
+    
     .header {
         display: flex;
         margin: 15px 80px 15px 150px;
@@ -29,11 +117,20 @@
         flex-basis: 20%;
     }
     
-    .tabs {
+    .tabsWrapper {
         display: flex;
         cursor: pointer;
         flex-basis: 80%;
-        justify-content: space-around;
+        justify-content: flex-end;
+    }
+    
+    .tabs {
+        display: flex;
+    }
+    
+    .tabs a {
+        color: #000000;
+        text-decoration: none;
     }
     
     .header img {
@@ -70,7 +167,7 @@
         display: none;
         position: absolute;
         background-color: #ffffff;
-        min-width: 160px;
+        min-width: 170px;
         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
         z-index: 1;
         border-radius: 8px;
@@ -166,13 +263,13 @@
         border-radius: 50%;
     }
     
+    .separator {
+        display: block;
+    }
+    
     .separator hr {
         opacity: 20%;
         width: 100%;
-    }
-    
-    .separator {
-        height: 2px;
     }
     
     .intro {
@@ -208,6 +305,37 @@
         margin: 20px 10px 40px 150px;
     }
     
+    .search {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: 30px;
+    }
+    
+    .search input {
+        display: flex;
+        height: 50px;
+        width: 89%;
+        border-radius: 18px;
+        font-size: 18px;
+        padding-left: 20px;
+        padding-right: 10px;
+        border: none;
+    }
+    
+    .search input:focus {
+        outline: none !important;
+        border: 1px solid rgb(126, 177, 50);
+        box-shadow: 0 0 5px rgb(126, 177, 50);
+    }
+    
+    @media only screen and (max-width: 800px) {
+        .search input {
+            font-size: 16px;
+            width: 89%;
+        }
+    }
+    
     .cards img {
         width: 55px;
     }
@@ -221,6 +349,15 @@
         padding: 35px;
         margin: 15px;
         max-width: 35%;
+    }
+    
+    .nocards {
+        margin-bottom: 50px;
+    }
+    
+    .nocards h2 {
+        color: #626364;
+        font-family: 'Open Sans', sans-serif;
     }
     
     .card:hover {
@@ -396,7 +533,7 @@
         .icon {
             flex-basis: 16%;
         }
-        .tabs {
+        .tabsWrapper {
             flex-basis: 84%;
             justify-self: flex-end;
         }
@@ -410,10 +547,11 @@
             margin-top: 50px;
             padding: 10px 20px 100px 20px;
         }
-        .tabs {
+        .tabsWrapper {
             display: none;
         }
         .head-wrapper {
+            display: block;
             width: 100%;
             margin: 0;
             position: fixed;
@@ -431,12 +569,6 @@
             background-color: #ffffff;
             z-index: 1;
             border-bottom: #000000;
-        }
-        .separator {
-            display: contents;
-            top: 50px;
-            left: 0px;
-            margin-top: 50px;
         }
         .intro {
             margin-top: 100px;
